@@ -21,7 +21,7 @@ public class GatewayController {
 
 	@GetMapping(value = "/call-gateway")
 	public Map<String, Object> callGateway() {
-		String reqUrl = "http://localhost:8080/client/get-map-data";
+		String reqUrl = "http://localhost:8081/client/get-map-data";
 
 		String output = restTemplate.getForObject(reqUrl, String.class);
 		log.info(""+output);
