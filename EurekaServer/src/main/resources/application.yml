@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: EUREKASERVER
+    name: eureka-server
   main:
     allow-bean-definition-overriding: true
 
@@ -13,23 +13,25 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  server:
-    enable-self-preservation: true
 
 zuul:
   sensitive-headers:
   host:
-    connect-timeout-millis: 600000
-    socket-timeout-millis: 600000
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 10000
   routes:
     eureka-client:
       path: /eureka-client/**
       url: http://localhost:8081
-    springboot-demo:
-      path: /springboot-demo/**
-      url: http://localhost:8080
+      strip-prefix: true
+    zuul-client:
+      path: /zuul-client/**
+      url: http://localhost:8082
+      strip-prefix: true
+    ribbon-client:
+      path: /ribbon-client/**
+      url: http://localhost:8083
+      strip-prefix: true
 
 logging:
   level:
