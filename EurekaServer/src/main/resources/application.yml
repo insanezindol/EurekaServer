@@ -45,3 +45,9 @@ logging:
         config:
           sources:
             URLConfigurationSource: ERROR
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
